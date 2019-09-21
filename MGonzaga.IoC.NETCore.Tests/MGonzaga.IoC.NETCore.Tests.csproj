@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Windsor" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MGonzaga.IoC.NETCore.BusinessLayer\MGonzaga.IoC.NETCore.BusinessLayer.csproj" />
+    <ProjectReference Include="..\MGonzaga.IoC.NETCore.Common\MGonzaga.IoC.NETCore.Common.csproj" />
+    <ProjectReference Include="..\MGonzaga.IoC.NETCore.Data\MGonzaga.IoC.NETCore.Data.csproj" />
+    <ProjectReference Include="..\MGonzaga.IoC.NETCore.Domain\MGonzaga.IoC.NETCore.Domain.csproj" />
+    <ProjectReference Include="..\MGonzaga.IoC.NETCore.Proxys\MGonzaga.IoC.NETCore.Proxys.csproj" />
+  </ItemGroup>
+
+</Project>
