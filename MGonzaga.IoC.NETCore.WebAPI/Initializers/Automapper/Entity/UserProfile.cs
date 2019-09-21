@@ -1,9 +1,5 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿#pragma warning disable
+using AutoMapper;
 namespace MGonzaga.IoC.NETCore.WebAPI.Initializers.Automapper.Entity
 {
     public class UserProfile : Profile

@@ -43,6 +43,7 @@ namespace MGonzaga.IoC.NETCore.Tests
         {
             var config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.local.json")
                 .Build();
             return config;
         }

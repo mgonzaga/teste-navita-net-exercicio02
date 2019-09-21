@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿#pragma warning disable
+using AutoMapper;
 namespace MGonzaga.IoC.NETCore.WebAPI.Initializers.Automapper.Entity
 {
     public class LinksProfile : Profile
