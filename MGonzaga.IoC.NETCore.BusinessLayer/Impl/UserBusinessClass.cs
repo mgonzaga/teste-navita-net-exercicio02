@@ -72,5 +72,17 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
             var acceptLink = _linksBusinessClass.IsValidLink(confirmEmail.UniqueId);               
             return _confirmEmail.Email;
         }
+
+        public string ChangePassword(int linkUniqueId, ChangePasswordViewModel value)
+        {
+            var user = base.GetById(value.Id);
+            if (user == null) throw new ValidationException("This user was not found in the database");
+            if (!(user.Password == value.CurrentPassword)) throw new ValidationException("This password is different from the database.");
+            if (!(value.NewPassword == value.RetypeNewPassword)) throw new ValidationException("This password are different");
+            var acceptLink = _linksBusinessClass.IsValidLink(new Guid(value.UniqueId));
+            user.Password = value.NewPassword;
+            var _user = base.Update(user);
+            return "Successfully changed";
+        }
     }
 }

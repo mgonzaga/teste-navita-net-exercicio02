@@ -144,7 +144,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         [HttpPut("{linkUniqueId}/change-password")]
         public ActionResult<string> PutChangePassword(int linkUniqueId, [FromBody] ChangePasswordViewModel value)
         {
-            return Ok("Funcionou");
+            return _userService.ChangePassword(linkUniqueId, value);
         }
         /// <summary>
         /// Change the loged user password
