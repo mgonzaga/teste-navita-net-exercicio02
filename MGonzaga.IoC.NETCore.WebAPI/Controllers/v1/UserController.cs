@@ -84,6 +84,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         /// <response code="400">Fail to create new User</response>
         [HttpPost]
         [ProducesResponseType(201)]
+        [AllowAnonymous]
         public ActionResult<User> Post([FromBody] User value)
         {
             return _userService.InsertUserWithEmailNotConfirmed(value);
