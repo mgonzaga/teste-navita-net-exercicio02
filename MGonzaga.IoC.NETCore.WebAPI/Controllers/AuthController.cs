@@ -60,7 +60,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
                     signingCredentials: signinCredentials
                 );
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new TokenViewModel() { AccessToken = tokenString});
+                return Ok(new TokenViewModel() { AccessToken = String.Format("bearer {0)", tokenString)});
             }
             catch (ValidationException ve)
             {
