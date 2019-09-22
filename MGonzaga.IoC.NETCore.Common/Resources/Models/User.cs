@@ -19,5 +19,6 @@ namespace MGonzaga.IoC.NETCore.Common.Resources.Models
         public string Locale { get; set; }
         public int OAuthProvider { get; set; }
         public String OAuthUId { get; set; }
+        public String RolesNames { get; set; }
     }
 }

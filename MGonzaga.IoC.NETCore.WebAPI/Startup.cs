@@ -65,9 +65,12 @@ namespace MGonzaga.IoC.NETCore.WebAPI
 
             // Add configuration for DbContext
             // Use connection string from appsettings.json file
+            var dbContextAssembly = typeof(SysDataBaseContext).GetTypeInfo().Assembly;
             services.AddDbContext<SysDataBaseContext>(options =>
             {
-                options.UseMySql(Configuration["AppSettings:ConnectionString"]);
+                options.UseMySql(Configuration["AppSettings:ConnectionString"], opt => {
+                    opt.CommandTimeout(5);
+                });
             });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
