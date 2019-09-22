@@ -64,5 +64,13 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
             _email.ForgotPassword(user.Email, user, acceptLink);
             return user.Email;
         }
+
+        public string ConfirmEmail(ConfirmPasswordViewModel confirmEmail)
+        {            
+            var _confirmEmail = GetByEmail(confirmEmail.EmailToConfirm);
+            if (_confirmEmail == null) throw new ValidationException("This confirmEmail was not found in the database");
+            var acceptLink = _linksBusinessClass.IsValidLink(confirmEmail.UniqueId);               
+            return _confirmEmail.Email;
+        }
     }
 }
