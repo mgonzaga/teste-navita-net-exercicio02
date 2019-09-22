@@ -133,7 +133,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         [HttpPut("{linkUniqueId}/confirm-email")]
         public ActionResult<string> PutConfirmEmail(string linkUniqueId, [FromBody] ConfirmPasswordViewModel value)
         {
-            return Ok("Funcionou - Teste alteração Fabiano 1");
+            return _userService.ConfirmEmail(value);
         }
         /// <summary>
         /// Change user password
