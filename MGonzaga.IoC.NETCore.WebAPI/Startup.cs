@@ -61,7 +61,9 @@ namespace MGonzaga.IoC.NETCore.WebAPI
             });
             //services.AddAutoMapper();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             // Add configuration for DbContext
             // Use connection string from appsettings.json file

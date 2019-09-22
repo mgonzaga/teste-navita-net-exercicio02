@@ -64,15 +64,10 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
             }
             catch (ValidationException ve)
             {
-                //var resp = new HttpResponseMessage(ve.StatusCodeToReturn)
-                //{
-                //    Content = new StringContent(ve.Message),
-                //    ReasonPhrase = ve.Message
-                //};
-                var resp = new HttpResponseMessage()
+                var resp = new HttpResponseMessage(ve.StatusCodeToReturn)
                 {
-                    ReasonPhrase = Newtonsoft.Json.JsonConvert.SerializeObject(ve),
-                    StatusCode = HttpStatusCode.BadRequest
+                    Content = new StringContent(ve.Message),
+                    ReasonPhrase = ve.Message
                 };
                 return BadRequest(resp);
             }
