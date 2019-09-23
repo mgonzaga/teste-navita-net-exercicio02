@@ -4,6 +4,7 @@ using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories;
 using MGonzaga.IoC.NETCore.Domain.Interfaces.Base;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace MGonzaga.IoC.NETCore.Data.Repositories
 {
@@ -19,5 +20,13 @@ namespace MGonzaga.IoC.NETCore.Data.Repositories
         {
             return db.Set<Links>().Where(t => t.UniqueId == uniqueId).FirstOrDefault();  
         }
+
+        public Links UpdateUsedLink(Links link)
+        {
+            var m = GetByUniqueId(link.UniqueId);
+            db.Entry<Links>(m).State = EntityState.Detached;
+            return db.Set<Links>().Update(link).Entity;
+        }
+
     }
 }

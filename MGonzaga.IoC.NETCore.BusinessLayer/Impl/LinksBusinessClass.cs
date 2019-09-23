@@ -43,5 +43,11 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
             if (selectedLink.ExpireDate <= DateTime.Now) throw new ValidationException("this link is expired");
             return true;
         }
+        public void UpdateUsedLink(Links link)
+        {
+            link.UsedLink = true;
+            _linksRepository.UpdateUsedLink(_mapper.Map<Domain.Models.Links>(link));
+            _linksRepository.SaveChanges();
+        }
     }
 }

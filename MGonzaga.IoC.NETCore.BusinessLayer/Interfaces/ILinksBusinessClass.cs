@@ -8,6 +8,7 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Interfaces
         Links AddNewLink(int IdObject, Common.Resources.Enuns.AcceptedLinksTypeEnum LinkType);
         bool IsValidLink(Guid uniqueId);
         Links GetByUniqueId(Guid uniqueId);
+        void UpdateUsedLink(Links link);
 
     }
 }

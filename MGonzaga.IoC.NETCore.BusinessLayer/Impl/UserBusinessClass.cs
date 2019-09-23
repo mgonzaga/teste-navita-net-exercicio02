@@ -67,10 +67,25 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
 
         public string ConfirmEmail(ConfirmPasswordViewModel confirmEmail)
         {            
-            var _confirmEmail = GetByEmail(confirmEmail.EmailToConfirm);
-            if (_confirmEmail == null) throw new ValidationException("This confirmEmail was not found in the database");
-            var acceptLink = _linksBusinessClass.IsValidLink(confirmEmail.UniqueId);               
-            return _confirmEmail.Email;
+            var _userModel = _repository.GetByEmail(confirmEmail.EmailToConfirm);
+            if (_userModel == null) throw new ValidationException("This confirmEmail was not found in the database");
+            var isValid = _linksBusinessClass.IsValidLink(confirmEmail.UniqueId);
+            if (isValid) {
+                var acceptLink = _linksBusinessClass.GetByUniqueId(confirmEmail.UniqueId);
+                if (acceptLink.ObjectId != _userModel.Id) throw new ValidationException("This link is not valid for this user");
+                string linkCode = "2207";
+                if (confirmEmail.ConfirmCode.Equals(linkCode))
+                {
+                    _userModel.AlterConfirmedEmail(true);
+                    _repository.Update(_userModel);
+                    _repository.SaveChanges();
+                    
+                    // Disable de link
+                    acceptLink.UsedLink = true;
+                    _linksBusinessClass.Update(acceptLink);
+                }
+            }
+            return _userModel.Email;
         }
     }
 }
