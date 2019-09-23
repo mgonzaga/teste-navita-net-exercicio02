@@ -13,5 +13,6 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Interfaces
         string ForgotPassword(string email);
         string ConfirmEmail(ConfirmPasswordViewModel confirmEmail);
         string ChangePassword(int linkUniqueId, ChangePasswordViewModel value);
+        string ChangeMyPassword(ChangePasswordViewModel value);
     }
 }

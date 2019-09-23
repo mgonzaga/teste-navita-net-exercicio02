@@ -154,7 +154,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         [HttpPut,Route("change-my-password")]
         public ActionResult<string> PutChangeMyPassword([FromBody] ChangePasswordViewModel value)
         {
-            return Ok("Funcionou");
+            return _userService.ChangeMyPassword(value);
         }
     }
 }
