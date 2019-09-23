@@ -64,5 +64,51 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
             _email.ForgotPassword(user.Email, user, acceptLink);
             return user.Email;
         }
+
+        public string ConfirmEmail(ConfirmPasswordViewModel confirmEmail)
+        {            
+            var _userModel = _repository.GetByEmail(confirmEmail.EmailToConfirm);
+            if (_userModel == null) throw new ValidationException("This confirmEmail was not found in the database");
+            var isValid = _linksBusinessClass.IsValidLink(confirmEmail.UniqueId);
+            if (isValid) {
+                var acceptLink = _linksBusinessClass.GetByUniqueId(confirmEmail.UniqueId);
+                if (acceptLink.ObjectId != _userModel.Id) throw new ValidationException("This link is not valid for this user");
+                string linkCode = "2207";
+                if (confirmEmail.ConfirmCode.Equals(linkCode))
+                {
+                    _userModel.AlterConfirmedEmail(true);
+                    _repository.Update(_userModel);
+                    _repository.SaveChanges();
+                    
+                    // Disable de link
+                    acceptLink.UsedLink = true;
+                    _linksBusinessClass.Update(acceptLink);
+                }
+            }
+            return _userModel.Email;
+        }
+
+        public string ChangePassword(int linkUniqueId, ChangePasswordViewModel value)
+        {
+            var user = base.GetById(value.Id);
+            if (user == null) throw new ValidationException("This user was not found in the database");
+            if (!(user.Password == value.CurrentPassword)) throw new ValidationException("This password is different from the database.");
+            if (!(value.NewPassword == value.RetypeNewPassword)) throw new ValidationException("This password are different");
+            var acceptLink = _linksBusinessClass.IsValidLink(new Guid(value.UniqueId));
+            user.Password = value.NewPassword;
+            var _user = base.Update(user);
+            return $"{_user.FullName}'s password was changed successfully";
+        }
+
+        public string ChangeMyPassword(ChangePasswordViewModel value)
+        {
+            var user = base.GetById(value.Id);
+            if (user == null) throw new ValidationException("This user was not found in the database");
+            if (!(user.Password == value.CurrentPassword)) throw new ValidationException("This password is different from the database.");
+            if (!(value.NewPassword == value.RetypeNewPassword)) throw new ValidationException("This password are different");            
+            user.Password = value.NewPassword;
+            var _user = base.Update(user);
+            return $"{_user.FullName}'s password was changed successfully";
+        }
     }
 }

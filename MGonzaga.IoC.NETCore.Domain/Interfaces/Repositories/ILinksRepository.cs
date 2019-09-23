@@ -7,5 +7,6 @@ namespace MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories
     public interface ILinksRepository : IWriteRepository<Links>
     {
         Links GetByUniqueId(Guid uniqueId);
+        Links UpdateUsedLink(Links link);
     }
 }

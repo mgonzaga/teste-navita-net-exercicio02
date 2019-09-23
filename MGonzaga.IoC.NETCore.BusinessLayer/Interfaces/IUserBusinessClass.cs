@@ -11,5 +11,8 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Interfaces
         User GetByEmail(string email);
         User InsertUserWithEmailNotConfirmed(User user);
         string ForgotPassword(string email);
+        string ConfirmEmail(ConfirmPasswordViewModel confirmEmail);
+        string ChangePassword(int linkUniqueId, ChangePasswordViewModel value);
+        string ChangeMyPassword(ChangePasswordViewModel value);
     }
 }
