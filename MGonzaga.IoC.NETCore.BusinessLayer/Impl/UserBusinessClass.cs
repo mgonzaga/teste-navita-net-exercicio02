@@ -82,6 +82,9 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
                     _repository.Update(_userModel);
                     _repository.SaveChanges();
                     _linksBusinessClass.Delete(acceptLink.Id);
+                }else
+                {
+                    throw new ValidationException("Invalid code");
                 }
             }
             return _userModel.Email;
