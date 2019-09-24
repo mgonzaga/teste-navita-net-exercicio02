@@ -10,14 +10,12 @@ namespace MGonzaga.IoC.NETCore.Domain.Models
         public AcceptedLinksTypeEnum Type { get; private set; }
         public DateTime CreateDate { get; private set; }
         public int ObjectId { get; private set; }
-        public bool UsedLink { get; private set; }
 
         public void AlterUniqueId(Guid newUniqueId) => UniqueId = newUniqueId;
         public void AlterExpireDate(DateTime newExpireDate) => ExpireDate = newExpireDate;
         public void AlterType(AcceptedLinksTypeEnum newType) => Type = newType;
         public void AlterCreateDate(DateTime newCreateDate) => CreateDate = newCreateDate;
         public void AlterObjectId(int newObjectId) => ObjectId = newObjectId;
-        public void AlterUsedLink(bool newUsedLink) => UsedLink = newUsedLink;
 
     }
 }

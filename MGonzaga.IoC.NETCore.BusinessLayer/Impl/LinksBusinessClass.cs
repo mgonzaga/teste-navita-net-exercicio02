@@ -25,7 +25,6 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
                 ObjectId = objectId,
                 CreateDate = DateTime.Now,
                 ExpireDate = DateTime.Now.AddHours(24),
-                UsedLink = false,
                 UniqueId = Guid.NewGuid()
             };
             return this.Insert(newLink);
@@ -34,20 +33,14 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
         {
             return _mapper.Map<Links>(_linksRepository.GetByUniqueId(uniqueId));
         }
-        public bool IsValidLink(Guid uniqueId)
+        public bool IsValidLink(Guid uniqueId, AcceptedLinksTypeEnum type)
         {
             var model = _linksRepository.GetByUniqueId(uniqueId);
             Common.Resources.Models.Links selectedLink = _mapper.Map<Common.Resources.Models.Links>(model);
             if (selectedLink == null) throw new ValidationException("Link not found");
-            if (selectedLink.UsedLink) throw new ValidationException("This link cannot be used at this time.");
+            if (selectedLink.Type != type) throw new ValidationException("this link is invalid for operation");
             if (selectedLink.ExpireDate <= DateTime.Now) throw new ValidationException("this link is expired");
             return true;
-        }
-        public void UpdateUsedLink(Links link)
-        {
-            link.UsedLink = true;
-            _linksRepository.UpdateUsedLink(_mapper.Map<Domain.Models.Links>(link));
-            _linksRepository.SaveChanges();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MGonzaga.IoC.NETCore.Common.Resources.Models;
 using MGonzaga.IoC.NETCore.Common.Resources.ViewModels;
+using System;
 using System.Collections.Generic;
 
 namespace MGonzaga.IoC.NETCore.BusinessLayer.Interfaces
@@ -12,7 +13,7 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Interfaces
         User InsertUserWithEmailNotConfirmed(User user);
         string ForgotPassword(string email);
         string ConfirmEmail(ConfirmPasswordViewModel confirmEmail);
-        string ChangePassword(int linkUniqueId, ChangePasswordViewModel value);
+        void ChangePassword(Guid linkUniqueId, ChangePasswordViewModel value);
         string ChangeMyPassword(ChangePasswordViewModel value);
     }
 }

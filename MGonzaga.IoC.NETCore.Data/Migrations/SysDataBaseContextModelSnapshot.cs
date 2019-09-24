@@ -32,8 +32,6 @@ namespace MGonzaga.IoC.NETCore.Data.Migrations
 
                     b.Property<Guid>("UniqueId");
 
-                    b.Property<bool>("UsedLink");
-
                     b.HasKey("Id");
 
                     b.ToTable("Links");

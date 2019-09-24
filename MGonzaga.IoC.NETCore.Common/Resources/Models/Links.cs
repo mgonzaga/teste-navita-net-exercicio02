@@ -10,6 +10,5 @@ namespace MGonzaga.IoC.NETCore.Common.Resources.Models
         public AcceptedLinksTypeEnum Type { get; set; }
         public DateTime CreateDate { get; set; }
         public int ObjectId { get;  set; }
-        public bool UsedLink { get;  set; }
     }
 }
