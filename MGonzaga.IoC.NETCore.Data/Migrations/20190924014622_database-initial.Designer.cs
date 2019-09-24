@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MGonzaga.IoC.NETCore.Data.Migrations
 {
     [DbContext(typeof(SysDataBaseContext))]
-    [Migration("20190921164656_initial-database-version")]
-    partial class initialdatabaseversion
+    [Migration("20190924014622_database-initial")]
+    partial class databaseinitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,8 +33,6 @@ namespace MGonzaga.IoC.NETCore.Data.Migrations
                     b.Property<int>("Type");
 
                     b.Property<Guid>("UniqueId");
-
-                    b.Property<bool>("UsedLink");
 
                     b.HasKey("Id");
 

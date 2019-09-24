@@ -75,7 +75,7 @@
             <param name="value">ConfirmPasswordViewModel Object</param>
             <returns></returns>
         </member>
-        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutChangePassword(System.Int32,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.ChangePasswordViewModel)">
+        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutChangePassword(System.Guid,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.ChangePasswordViewModel)">
             <summary>
             Change user password
             </summary>
@@ -83,10 +83,11 @@
             <param name="value">ChangePasswordViewModel Object</param>
             <returns></returns>
         </member>
-        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutChangeMyPassword(MGonzaga.IoC.NETCore.Common.Resources.ViewModels.ChangePasswordViewModel)">
+        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutChangeMyPassword(System.Int32,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.ChangePasswordViewModel)">
             <summary>
             Change the loged user password
             </summary>
+            <param name="userId">User id to change</param>
             <param name="value">ChangePasswordViewModel object</param>
             <returns></returns>
         </member>

@@ -8,6 +8,7 @@ using System.Web.Http;
 using MGonzaga.IoC.NETCore.Common.Resources.ViewModels;
 using MGonzaga.IoC.NETCoreWebAPI.Controllers.Base;
 using AutoMapper;
+using System;
 
 namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
 {
@@ -119,6 +120,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         /// </summary>
         /// <param name="email">E-mail to forgot password</param>
         /// <returns>Registred e-mail in database</returns>
+        [AllowAnonymous]
         [HttpGet("{email}/forgot-password")]
         public ActionResult<string> GetForgotPassword(string email)
         {
@@ -130,6 +132,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         /// <param name="linkUniqueId">Access Link Unique Id</param>
         /// <param name="value">ConfirmPasswordViewModel Object</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPut("{linkUniqueId}/confirm-email")]
         public ActionResult<string> PutConfirmEmail(string linkUniqueId, [FromBody] ConfirmPasswordViewModel value)
         {
@@ -141,19 +144,24 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         /// <param name="linkUniqueId">Access Link Unique Id</param>
         /// <param name="value">ChangePasswordViewModel Object</param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPut("{linkUniqueId}/change-password")]
-        public ActionResult<string> PutChangePassword(int linkUniqueId, [FromBody] ChangePasswordViewModel value)
+        public ActionResult PutChangePassword(Guid linkUniqueId, [FromBody] ChangePasswordViewModel value)
         {
-            return _userService.ChangePassword(linkUniqueId, value);
+            _userService.ChangePassword(linkUniqueId, value);
+            return Ok();
         }
         /// <summary>
         /// Change the loged user password
         /// </summary>
+        /// <param name="userId">User id to change</param>
         /// <param name="value">ChangePasswordViewModel object</param>
         /// <returns></returns>
         [HttpPut,Route("change-my-password")]
-        public ActionResult<string> PutChangeMyPassword([FromBody] ChangePasswordViewModel value)
+        public ActionResult<string> PutChangeMyPassword(int userId, [FromBody] ChangePasswordViewModel value)
         {
+            value.Id = userId;
+            //Todo: Pegar o usuário Logado aqui.
             return _userService.ChangeMyPassword(value);
         }
     }

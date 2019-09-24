@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MGonzaga.IoC.NETCore.Data.Migrations
 {
-    public partial class initialdatabaseversion : Migration
+    public partial class databaseinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,8 +18,7 @@ namespace MGonzaga.IoC.NETCore.Data.Migrations
                     ExpireDate = table.Column<DateTime>(nullable: false),
                     Type = table.Column<int>(nullable: false),
                     CreateDate = table.Column<DateTime>(nullable: false),
-                    ObjectId = table.Column<int>(nullable: false),
-                    UsedLink = table.Column<bool>(nullable: false)
+                    ObjectId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

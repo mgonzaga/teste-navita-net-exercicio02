@@ -13,13 +13,13 @@ using MGonzaga.IoC.NETCore.Common.Resources.Enuns;
 
 namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
 {
-    public class UserBusinessClass : DefaultBusinessClass<Common.Resources.Models.User,Domain.Models.User>, IUserBusinessClass
+    public class UserBusinessClass : DefaultBusinessClass<Common.Resources.Models.User, Domain.Models.User>, IUserBusinessClass
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
         private readonly IEmailSend _email;
         private readonly ILinksBusinessClass _linksBusinessClass;
-        public UserBusinessClass(IUserRepository userRepository,IMapper mapper, IEmailSend email, ILinksBusinessClass linksBusinessClass) : base(userRepository, mapper)
+        public UserBusinessClass(IUserRepository userRepository, IMapper mapper, IEmailSend email, ILinksBusinessClass linksBusinessClass) : base(userRepository, mapper)
         {
             this._repository = userRepository;
             this._mapper = mapper;
@@ -32,7 +32,8 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
             return _mapper.Map<Common.Resources.Models.User>(this._repository.GetByEmail(email));
         }
 
-        public IEnumerable<User> GetUsersbyFilterPagined(out int totalRecords, int page, int pageSize, string fullName, string email, bool? confirmedEmail) {
+        public IEnumerable<User> GetUsersbyFilterPagined(out int totalRecords, int page, int pageSize, string fullName, string email, bool? confirmedEmail)
+        {
             var resultModel = this._repository.GetUsersbyFilterPagined(out totalRecords, page, pageSize, fullName, email, confirmedEmail);
             return _mapper.Map<IEnumerable<Common.Resources.Models.User>>(resultModel);
         }
@@ -66,11 +67,12 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
         }
 
         public string ConfirmEmail(ConfirmPasswordViewModel confirmEmail)
-        {            
+        {
             var _userModel = _repository.GetByEmail(confirmEmail.EmailToConfirm);
             if (_userModel == null) throw new ValidationException("This confirmEmail was not found in the database");
-            var isValid = _linksBusinessClass.IsValidLink(confirmEmail.UniqueId);
-            if (isValid) {
+            var isValid = _linksBusinessClass.IsValidLink(confirmEmail.UniqueId, AcceptedLinksTypeEnum.UserEmailConfirmation);
+            if (isValid)
+            {
                 var acceptLink = _linksBusinessClass.GetByUniqueId(confirmEmail.UniqueId);
                 if (acceptLink.ObjectId != _userModel.Id) throw new ValidationException("This link is not valid for this user");
                 string linkCode = "2207";
@@ -79,35 +81,38 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
                     _userModel.AlterConfirmedEmail(true);
                     _repository.Update(_userModel);
                     _repository.SaveChanges();
-                    
-                    // Disable de link
-                    acceptLink.UsedLink = true;
-                    _linksBusinessClass.Update(acceptLink);
+                    _linksBusinessClass.Delete(acceptLink.Id);
                 }
             }
             return _userModel.Email;
         }
 
-        public string ChangePassword(int linkUniqueId, ChangePasswordViewModel value)
+        public void ChangePassword(Guid linkUniqueId, ChangePasswordViewModel value)
         {
-            var user = base.GetById(value.Id);
-            if (user == null) throw new ValidationException("This user was not found in the database");
-            if (!(user.Password == value.CurrentPassword)) throw new ValidationException("This password is different from the database.");
             if (!(value.NewPassword == value.RetypeNewPassword)) throw new ValidationException("This password are different");
-            var acceptLink = _linksBusinessClass.IsValidLink(new Guid(value.UniqueId));
-            user.Password = value.NewPassword;
-            var _user = base.Update(user);
-            return $"{_user.FullName}'s password was changed successfully";
+            var isValid = _linksBusinessClass.IsValidLink(linkUniqueId, AcceptedLinksTypeEnum.UserForgotPassword);
+            if (isValid)
+            {
+                var acceptLink = _linksBusinessClass.GetByUniqueId(linkUniqueId);
+                var user = _repository.GetById(acceptLink.ObjectId);
+                if (user == null) throw new ValidationException("This user was not found in the database");
+                user.AlterPassword(value.NewPassword);
+                _repository.Update(user);
+                _repository.SaveChanges();
+                _linksBusinessClass.Delete(acceptLink.Id);
+            }
         }
 
         public string ChangeMyPassword(ChangePasswordViewModel value)
         {
-            var user = base.GetById(value.Id);
+            var user = _repository.GetById(value.Id);
             if (user == null) throw new ValidationException("This user was not found in the database");
-            if (!(user.Password == value.CurrentPassword)) throw new ValidationException("This password is different from the database.");
-            if (!(value.NewPassword == value.RetypeNewPassword)) throw new ValidationException("This password are different");            
-            user.Password = value.NewPassword;
-            var _user = base.Update(user);
+            if (user.Password != value.CurrentPassword) throw new ValidationException("This password is different from the database.");
+            if (value.NewPassword != value.RetypeNewPassword) throw new ValidationException("This password are different");
+
+            user.AlterPassword(value.NewPassword);
+            var _user = _repository.Update(user);
+            _repository.SaveChanges();
             return $"{_user.FullName}'s password was changed successfully";
         }
     }
