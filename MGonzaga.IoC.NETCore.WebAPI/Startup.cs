@@ -112,13 +112,13 @@ namespace MGonzaga.IoC.NETCore.WebAPI
                 c.IncludeXmlComments(xmlPath);
             });
 
-            services.ConfigureSwaggerGen(option => {
-                option.CustomSchemaIds((type) => type.ToString()
-                   .Replace("[", "_")
-                   .Replace("]", "_")
-                   .Replace(",", "-")
-                   .Replace("`", "_"));
-            });
+            //services.ConfigureSwaggerGen(option => {
+            //    option.CustomSchemaIds((type) => type.ToString()
+            //       .Replace("[", "_")
+            //       .Replace("]", "_")
+            //       .Replace(",", "-")
+            //       .Replace("`", "_"));
+            //});
 
 
             
