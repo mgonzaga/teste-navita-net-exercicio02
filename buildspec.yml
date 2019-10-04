@@ -1,5 +1,9 @@
 version: 0.2
 phases:
+    install:
+        commands:
+        - sudo yum update 
+        - sudo yum install dotnet-sdk-2.2
     pre_build:
         commands:
         - echo Restore started on `date`
@@ -9,6 +13,7 @@ phases:
     build:
         commands:
         - echo Build started on `date`
+        - dotnet build mgonzaga.ioc.netcore.sample.sln
         - dotnet publish -c release -o ./build_output mgonzaga.ioc.netcore.sample.sln
 artifacts:
     files:
