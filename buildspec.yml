@@ -7,7 +7,7 @@ phases:
         commands:
         - echo Build started on `date`
         - dotnet build mgonzaga.ioc.netcore.sample.sln
-        - dotnet publish -c release -o ./build_output mgonzaga.ioc.netcore.sample.sln
+        - dotnet publish -c release -o ./build_output mgonzaga.ioc.netcore.sample.sln -p:RestoreUseSkipNonexistentTargets=false -nowarn:msb3202,nu1503
 artifacts:
     files:
         - ./build_output/**/*
