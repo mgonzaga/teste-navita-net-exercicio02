@@ -3,8 +3,3 @@ phases:
     install:
         runtime-versions:
             dotnet: 2.2
-
-artifacts:
-    files:
-        - ./mgonzaga-serguranca-/SourceArti/**/*
-        - scripts/**/*
