@@ -5,7 +5,6 @@ phases:
             dotnet: 2.2
 
 artifacts:
-    type: zip
     files:
-        - ./mgonzaga-serguranca-/**/*
+        - ./mgonzaga-serguranca-/SourceArti/**/*
         - scripts/**/*
