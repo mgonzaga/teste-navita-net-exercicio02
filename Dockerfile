@@ -4,16 +4,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["MGonzaga.IoC.NETCore.WebAPI/MGonzaga.IoC.NETCoreWebAPI.csproj", "MGonzaga.IoC.NETCore.WebAPI/"]
-COPY ["MGonzaga.IoC.NETCore.Repositories/MGonzaga.IoC.NETCore.Repositories.csproj", "MGonzaga.IoC.NETCore.Repositories/"]
-COPY ["MGonzaga.IoC.NETCore.Domain/MGonzaga.IoC.NETCore.Domain.csproj", "MGonzaga.IoC.NETCore.Domain/"]
-COPY ["MGonzaga.IoC.NETCore.Common/MGonzaga.IoC.NETCore.Common.csproj", "MGonzaga.IoC.NETCore.Common/"]
-COPY ["MGonzaga.IoC.NETCore.BusinessLayer/MGonzaga.IoC.NETCore.BusinessLayer.csproj", "MGonzaga.IoC.NETCore.BusinessLayer/"]
-COPY ["MGonzaga.IoC.NETCore.Proxys/MGonzaga.IoC.NETCore.Proxys.csproj", "MGonzaga.IoC.NETCore.Proxys/"]
-COPY ["MGonzaga.IoC.NETCore.Data/MGonzaga.IoC.NETCore.Data.csproj", "MGonzaga.IoC.NETCore.Data/"]
-RUN dotnet restore "MGonzaga.IoC.NETCore.WebAPI/MGonzaga.IoC.NETCoreWebAPI.csproj"
+COPY ["src/MGonzaga.IoC.NETCore.WebAPI/MGonzaga.IoC.NETCoreWebAPI.csproj", "src/MGonzaga.IoC.NETCore.WebAPI/"]
+COPY ["src/MGonzaga.IoC.NETCore.Repositories/MGonzaga.IoC.NETCore.Repositories.csproj", "src/MGonzaga.IoC.NETCore.Repositories/"]
+COPY ["src/MGonzaga.IoC.NETCore.Domain/MGonzaga.IoC.NETCore.Domain.csproj", "src/MGonzaga.IoC.NETCore.Domain/"]
+COPY ["src/MGonzaga.IoC.NETCore.Common/MGonzaga.IoC.NETCore.Common.csproj", "src/MGonzaga.IoC.NETCore.Common/"]
+COPY ["src/MGonzaga.IoC.NETCore.BusinessLayer/MGonzaga.IoC.NETCore.BusinessLayer.csproj", "src/MGonzaga.IoC.NETCore.BusinessLayer/"]
+COPY ["src/MGonzaga.IoC.NETCore.Proxys/MGonzaga.IoC.NETCore.Proxys.csproj", "src/MGonzaga.IoC.NETCore.Proxys/"]
+COPY ["src/MGonzaga.IoC.NETCore.Data/MGonzaga.IoC.NETCore.Data.csproj", "src/MGonzaga.IoC.NETCore.Data/"]
+RUN dotnet restore "src/MGonzaga.IoC.NETCore.WebAPI/MGonzaga.IoC.NETCoreWebAPI.csproj"
 COPY . .
-WORKDIR "/src/MGonzaga.IoC.NETCore.WebAPI"
+WORKDIR "src/src/MGonzaga.IoC.NETCore.WebAPI"
 RUN dotnet build "MGonzaga.IoC.NETCoreWebAPI.csproj" -c Release -o /app
 
 FROM build AS publish
