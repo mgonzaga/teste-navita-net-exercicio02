@@ -6,5 +6,5 @@ phases:
 
 artifacts:
     files:
-        - ./build_output/**/*
+        - ./mgonzaga-serguranca-/**/*
         - scripts/**/*
