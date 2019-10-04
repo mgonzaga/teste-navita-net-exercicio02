@@ -3,12 +3,6 @@ phases:
     install:
         runtime-versions:
             dotnet: 2.2
-    pre_build:
-        #commands:
-        #- echo Restore started on `date`
-        #- dotnet restore mgonzaga.ioc.netcore.sample.sln
-        #finally:
-        #  - echo This always runs even if the install command fails
     build:
         commands:
         - echo Build started on `date`
