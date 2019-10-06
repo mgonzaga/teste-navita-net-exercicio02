@@ -342,3 +342,4 @@ healthchecksdb
 
 *.local*
 /docker_commands.txt
+/MGonzaga.IoC.NETCore.WebAPI/aws-ecs-tools-defaults.json

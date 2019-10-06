@@ -28,7 +28,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         }
         // GET api/user
         /// <summary>
-        /// Get all users from table
+        /// Get all users from tables
         /// </summary>
         /// <returns>All users list</returns>
         //[HttpGet, Authorize(Roles = "Administrator")]
