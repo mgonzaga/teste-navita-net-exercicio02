@@ -29,7 +29,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
         /// <summary>
         ///     Log In User On system
         /// </summary>
-        /// <param name="value">Login model</param>
+        /// <param name="value">Login model username and password</param>
         /// <returns>AuthModel</returns>
         /// <response code="200">Login OK</response>
         /// <response code="400">Login Fail</response>
