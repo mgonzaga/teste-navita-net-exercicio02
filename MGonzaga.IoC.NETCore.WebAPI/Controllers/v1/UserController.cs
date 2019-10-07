@@ -14,7 +14,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
 {
     [Route("v1/api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class UserController : BaseController
     {
