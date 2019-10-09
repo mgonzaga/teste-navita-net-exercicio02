@@ -24,7 +24,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Initializers
 
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            string connectionString = config["AppSettings:ConnectionString"];
+            string connectionString = config["DatabaseConnectionString"];
             /*
                         container.Register(Classes.FromThisAssembly()
                                             .Where(Component.IsInSameNamespaceAs<King>())
