@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
 using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories;
 using MGonzaga.IoC.NETCore.Data.Repositories;
 using MGonzaga.IoC.NETCore.BusinessLayer.Impl;
@@ -13,7 +11,6 @@ namespace MGonzaga.IoC.NETCore.Tests
 {
     public class DefaultTestClass
     {
-        public readonly IWindsorContainer container;
         private readonly IMapper mapper;
         public DefaultTestClass()
         {
@@ -28,16 +25,16 @@ namespace MGonzaga.IoC.NETCore.Tests
             var config = InitConfiguration();
             var cnn = config["AppSettings:ConnectionString"];
             mapper = configuration.CreateMapper();
-            container = new WindsorContainer();
+            //container = new WindsorContainer();
             //container.Register(Component.For<IDbContext>().UsingFactoryMethod(instance => new SysDataBaseContext(cnn)));
             //SysDataBaseContext
 
-            container.Register(Component.For<IMapper>().UsingFactoryMethod(instance => mapper));
-            container.Register(Component.For<IUserRepository>().ImplementedBy<UserRepository>());
-            container.Register(Component.For<IUserBusinessClass>().ImplementedBy<UserBusinessClass>());
-            container.Register(Component.For<IEmailSend>().ImplementedBy<EmailSend>());
-            container.Register(Component.For<ILinksRepository>().ImplementedBy<LinksRepository>());
-            container.Register(Component.For<ILinksBusinessClass>().ImplementedBy<LinksBusinessClass>());
+            //container.Register(Component.For<IMapper>().UsingFactoryMethod(instance => mapper));
+            //container.Register(Component.For<IUserRepository>().ImplementedBy<UserRepository>());
+            //container.Register(Component.For<IUserBusinessClass>().ImplementedBy<UserBusinessClass>());
+            //container.Register(Component.For<IEmailSend>().ImplementedBy<EmailSend>());
+            //container.Register(Component.For<ILinksRepository>().ImplementedBy<LinksRepository>());
+            //container.Register(Component.For<ILinksBusinessClass>().ImplementedBy<LinksBusinessClass>());
         }
         private IConfiguration InitConfiguration()
         {

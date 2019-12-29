@@ -5,9 +5,9 @@ using System.Text;
 namespace MGonzaga.IoC.NETCore.Common.Resources.ViewModels
 {
     [Serializable]
-    public class SucessResponse
+    public class SucessResponse<T> where T : class
     {
-        public SucessResponse(object data, int statusCode = 200, string message = "Ok")
+        public SucessResponse(T data, int statusCode = 200, string message = "Ok")
         {
             StatusCode = statusCode;
             Message = message;
@@ -16,6 +16,6 @@ namespace MGonzaga.IoC.NETCore.Common.Resources.ViewModels
 
         public int StatusCode { get; set; }
         public string Message { get; set; }
-        public object Data { get; set; }
+        public T Data { get; set; }
     }
 }

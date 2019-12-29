@@ -1,5 +1,12 @@
 ﻿using AutoMapper;
+using MGonzaga.IoC.NETCore.BusinessLayer.Impl;
+using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
 using MGonzaga.IoC.NETCore.Data.Context;
+using MGonzaga.IoC.NETCore.Data.Repositories;
+using MGonzaga.IoC.NETCore.Domain.Interfaces.Base;
+using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories;
+using MGonzaga.IoC.NETCore.Proxys.Email.Impl;
+using MGonzaga.IoC.NETCore.Proxys.Email.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,8 +34,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
@@ -70,8 +76,8 @@ namespace MGonzaga.IoC.NETCore.WebAPI
             var dbContextAssembly = typeof(SysDataBaseContext).GetTypeInfo().Assembly;
             services.AddDbContext<SysDataBaseContext>(options =>
             {
-                options.UseMySql(Configuration["AppSettings:ConnectionString"], opt => {
-                    opt.CommandTimeout(5);
+                options.UseMySql(Configuration["DatabaseConnectionString"], opt => {
+                    opt.CommandTimeout(30);
                 });
             });
 
@@ -120,11 +126,15 @@ namespace MGonzaga.IoC.NETCore.WebAPI
             //       .Replace("`", "_"));
             //});
 
-
+            services.AddScoped(typeof(IDbContext), typeof(SysDataBaseContext));
+            services.AddScoped(typeof(IUserBusinessClass), typeof(UserBusinessClass));
+            services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+            services.AddScoped(typeof(IEmailSend), typeof(EmailSend));
+            services.AddScoped(typeof(ILinksBusinessClass), typeof(LinksBusinessClass));
+            services.AddScoped(typeof(ILinksRepository), typeof(LinksRepository));
             
-            // Add custom provider
-            var container = new ServiceResolver(services,Configuration).GetServiceProvider();
-            return container;
+
+
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

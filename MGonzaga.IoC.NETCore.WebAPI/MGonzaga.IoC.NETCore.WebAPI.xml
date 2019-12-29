@@ -4,7 +4,7 @@
         <name>MGonzaga.IoC.NETCore.WebAPI</name>
     </assembly>
     <members>
-        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.AuthController.PostLogin(MGonzaga.IoC.NETCore.Common.Resources.ViewModels.UserLoginViewModel)">
+        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.AuthController.PostLogin(MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User.UserLoginViewModel)">
             <summary>
                 Log In User On system
             </summary>
@@ -15,7 +15,7 @@
         </member>
         <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.GetAllUsers">
             <summary>
-            Get all users from tables
+            Get all users from table
             </summary>
             <returns>All users list</returns>
         </member>
@@ -37,7 +37,7 @@
             <param name="confirmedEmail">Only confirmed users (true or false)</param>
             <returns></returns>
         </member>
-        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.Post(MGonzaga.IoC.NETCore.Common.Resources.Models.User)">
+        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.Post(MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User.CreateNewUserViewModel)">
             <summary>
                 Add a new user on table.
             </summary>
@@ -67,7 +67,7 @@
             <param name="email">E-mail to forgot password</param>
             <returns>Registred e-mail in database</returns>
         </member>
-        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutConfirmEmail(System.String,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.ConfirmPasswordViewModel)">
+        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutConfirmEmail(System.String,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User.ConfirmPasswordViewModel)">
             <summary>
             User E-mail Confirmation
             </summary>
@@ -75,7 +75,7 @@
             <param name="value">ConfirmPasswordViewModel Object</param>
             <returns></returns>
         </member>
-        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutChangePassword(System.Guid,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.ChangePasswordViewModel)">
+        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutChangePassword(System.Guid,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User.ChangePasswordViewModel)">
             <summary>
             Change user password
             </summary>
@@ -83,7 +83,7 @@
             <param name="value">ChangePasswordViewModel Object</param>
             <returns></returns>
         </member>
-        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutChangeMyPassword(System.Int32,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.ChangePasswordViewModel)">
+        <member name="M:MGonzaga.IoC.NETCore.WebAPI.Controllers.v1.UserController.PutChangeMyPassword(System.Int32,MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User.ChangePasswordViewModel)">
             <summary>
             Change the loged user password
             </summary>

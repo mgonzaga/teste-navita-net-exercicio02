@@ -10,6 +10,7 @@ using System.Net;
 using MGonzaga.IoC.NETCore.Proxys.Email.Interfaces;
 using MGonzaga.IoC.NETCore.Common.Resources.ViewModels;
 using MGonzaga.IoC.NETCore.Common.Resources.Enuns;
+using MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User;
 
 namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
 {
@@ -48,8 +49,9 @@ namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
             if (!user.ConfirmedEmail) throw new ValidationException(HttpStatusCode.Forbidden, "E-mail not confirmed");
             return _mapper.Map<Common.Resources.Models.User>(user);
         }
-        public User InsertUserWithEmailNotConfirmed(User model)
+        public User InsertUserWithEmailNotConfirmed(CreateNewUserViewModel createNewUsermodel)
         {
+            var model = _mapper.Map<User>(createNewUsermodel);
             model.ConfirmedEmail = false;
             var user = base.Insert(model);
             var acceptLink = _linksBusinessClass.AddNewLink(user.Id, AcceptedLinksTypeEnum.UserEmailConfirmation);

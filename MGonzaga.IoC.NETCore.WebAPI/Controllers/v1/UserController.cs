@@ -9,6 +9,7 @@ using MGonzaga.IoC.NETCore.Common.Resources.ViewModels;
 using MGonzaga.IoC.NETCoreWebAPI.Controllers.Base;
 using AutoMapper;
 using System;
+using MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User;
 
 namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
 {
@@ -86,7 +87,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
         [HttpPost]
         [ProducesResponseType(201)]
         [AllowAnonymous]
-        public ActionResult<User> Post([FromBody] User value)
+        public ActionResult<User> Post([FromBody] CreateNewUserViewModel value)
         {
             return _userService.InsertUserWithEmailNotConfirmed(value);
         }

@@ -13,6 +13,7 @@ using System.Text;
 using System.Web.Http;
 using MGonzaga.IoC.NETCore.Common.Resources.ViewModels;
 using MGonzaga.IoC.NETCoreWebAPI.Controllers.Base;
+using MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
 {
@@ -34,7 +35,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
         /// <response code="200">Login OK</response>
         /// <response code="400">Login Fail</response>
         [HttpPost, Route("Login")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(SucessResponse<TokenViewModel>), 200)]
         [ProducesResponseType(400)]
         public IActionResult PostLogin([FromBody] UserLoginViewModel value)
         {
@@ -62,7 +63,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
                 var tokenViewModel = new TokenViewModel() { AccessToken = String.Format("bearer {0}", tokenString) };
 
-                return Ok(new SucessResponse(tokenViewModel));
+                return Ok(new SucessResponse<TokenViewModel>(tokenViewModel));
             }
             catch (ValidationException ve)
             {
