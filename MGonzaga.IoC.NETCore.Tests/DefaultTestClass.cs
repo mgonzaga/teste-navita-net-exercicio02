@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories;
 using MGonzaga.IoC.NETCore.Data.Repositories;
-using MGonzaga.IoC.NETCore.BusinessLayer.Impl;
-using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Impl;
+using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using Microsoft.Extensions.Configuration;
 using MGonzaga.IoC.NETCore.Proxys.Email.Interfaces;
 using MGonzaga.IoC.NETCore.Proxys.Email.Impl;

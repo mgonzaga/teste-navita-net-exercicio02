@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.Common", "MGonzaga.IoC.NETCore.Common\MGonzaga.IoC.NETCore.Common.csproj", "{5AC96A6A-22FE-4EC1-9352-387B49143A96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.BusinessLayer", "MGonzaga.IoC.NETCore.BusinessLayer\MGonzaga.IoC.NETCore.BusinessLayer.csproj", "{483ADEF0-1BFA-49DD-A9BB-79FE40444074}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.BussinessLayer", "MGonzaga.IoC.NETCore.BussinessLayer\MGonzaga.IoC.NETCore.BussinessLayer.csproj", "{483ADEF0-1BFA-49DD-A9BB-79FE40444074}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.Proxys", "MGonzaga.IoC.NETCore.Proxys\MGonzaga.IoC.NETCore.Proxys.csproj", "{04DA32BA-66D5-454F-90A4-BAD9164E419C}"
 EndProject

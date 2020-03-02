@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
-      "MGonzaga.IoC.NETCore.BusinessLayer/1.0.0": {
+      "MGonzaga.IoC.NETCore.BussinessLayer/1.0.0": {
         "dependencies": {
           "AutoMapper": "9.0.0",
           "MGonzaga.IoC.NETCore.Common": "1.0.0",
@@ -14,7 +14,7 @@
           "MGonzaga.IoC.NETCore.Proxys": "1.0.0"
         },
         "runtime": {
-          "MGonzaga.IoC.NETCore.BusinessLayer.dll": {}
+          "MGonzaga.IoC.NETCore.BussinessLayer.dll": {}
         }
       },
       "AutoMapper/9.0.0": {
@@ -762,7 +762,7 @@
     }
   },
   "libraries": {
-    "MGonzaga.IoC.NETCore.BusinessLayer/1.0.0": {
+    "MGonzaga.IoC.NETCore.BussinessLayer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

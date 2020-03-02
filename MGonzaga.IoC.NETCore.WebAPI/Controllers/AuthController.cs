@@ -1,6 +1,6 @@
 ﻿using MGonzaga.IoC.NETCore.Common.Exceptions;
 using MGonzaga.IoC.NETCore.Common.Resources.Models;
-using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -21,8 +21,8 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
     [ApiController]
     public class AuthController : BaseController
     {
-        private readonly IUserBusinessClass _userService;
-        public AuthController(IUserBusinessClass userService)
+        private readonly IUserBussinessClass _userService;
+        public AuthController(IUserBussinessClass userService)
         {
             this._userService = userService;
         }

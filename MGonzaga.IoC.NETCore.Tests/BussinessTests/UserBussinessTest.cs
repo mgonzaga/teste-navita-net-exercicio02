@@ -1,5 +1,5 @@
 ﻿using MGonzaga.IoC.NETCore.Common.Resources.Models;
-using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 namespace MGonzaga.IoC.NETCore.Tests.BusinessTests
 {
     [TestClass]
-    public class UserBusinessTest : DefaultTestClass
+    public class UserBussinessTest : DefaultTestClass
     {
         //public UserBusinessTest() : base()
         //{

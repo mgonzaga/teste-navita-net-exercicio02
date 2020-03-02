@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace MGonzaga.IoC.NETCore.BusinessLayer.Interfaces
+namespace MGonzaga.IoC.NETCore.BussinessLayer.Interfaces
 {
-    public interface IDefaultBusinessClass<TResource,TModel> where TResource: class
+    public interface IDefaultBussinessClass<TResource,TModel> where TResource: class
     {
         TResource Insert(TResource model);
         TResource Update(TResource model);

@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MGonzaga.IoC.NETCore.BusinessLayer\MGonzaga.IoC.NETCore.BusinessLayer.csproj" />
+    <ProjectReference Include="..\MGonzaga.IoC.NETCore.BussinessLayer\MGonzaga.IoC.NETCore.BussinessLayer.csproj" />
     <ProjectReference Include="..\MGonzaga.IoC.NETCore.Common\MGonzaga.IoC.NETCore.Common.csproj" />
     <ProjectReference Include="..\MGonzaga.IoC.NETCore.Data\MGonzaga.IoC.NETCore.Data.csproj" />
     <ProjectReference Include="..\MGonzaga.IoC.NETCore.Domain\MGonzaga.IoC.NETCore.Domain.csproj" />

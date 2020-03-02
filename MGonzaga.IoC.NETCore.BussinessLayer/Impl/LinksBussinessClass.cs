@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
-using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using MGonzaga.IoC.NETCore.Common.Exceptions;
 using MGonzaga.IoC.NETCore.Common.Resources.Enuns;
 using MGonzaga.IoC.NETCore.Common.Resources.Models;
 using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories;
 using System;
-namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
+namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
 {
-    public class LinksBusinessClass : DefaultBusinessClass<Common.Resources.Models.Links, Domain.Models.Links> , ILinksBusinessClass
+    public class LinksBussinessClass : DefaultBussinessClass<Common.Resources.Models.Links, Domain.Models.Links> , ILinksBussinessClass
     {
         private readonly ILinksRepository _linksRepository;
         private readonly IMapper _mapper;
-        public LinksBusinessClass(ILinksRepository linksRepository, IMapper mapper) : base(linksRepository, mapper)
+        public LinksBussinessClass(ILinksRepository linksRepository, IMapper mapper) : base(linksRepository, mapper)
         {
             _linksRepository = linksRepository;
             _mapper = mapper;

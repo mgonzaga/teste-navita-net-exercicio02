@@ -5,7 +5,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
 COPY ["MGonzaga.IoC.NETCore.WebAPI/MGonzaga.IoC.NETCore.WebAPI.csproj", "MGonzaga.IoC.NETCore.WebAPI/"]
-COPY ["MGonzaga.IoC.NETCore.BusinessLayer/MGonzaga.IoC.NETCore.BusinessLayer.csproj", "MGonzaga.IoC.NETCore.BusinessLayer/"]
+COPY ["MGonzaga.IoC.NETCore.BussinessLayer/MGonzaga.IoC.NETCore.BussinessLayer.csproj", "MGonzaga.IoC.NETCore.BussinessLayer/"]
 COPY ["MGonzaga.IoC.NETCore.Common/MGonzaga.IoC.NETCore.Common.csproj", "MGonzaga.IoC.NETCore.Common/"]
 COPY ["MGonzaga.IoC.NETCore.Domain/MGonzaga.IoC.NETCore.Domain.csproj", "MGonzaga.IoC.NETCore.Domain/"]
 COPY ["MGonzaga.IoC.NETCore.Proxys/MGonzaga.IoC.NETCore.Proxys.csproj", "MGonzaga.IoC.NETCore.Proxys/"]

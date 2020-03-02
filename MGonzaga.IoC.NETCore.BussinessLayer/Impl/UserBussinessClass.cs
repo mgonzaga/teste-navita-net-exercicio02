@@ -1,6 +1,6 @@
 ﻿using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories;
 using MGonzaga.IoC.NETCore.Common.Resources.Models;
-using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,15 +12,15 @@ using MGonzaga.IoC.NETCore.Common.Resources.ViewModels;
 using MGonzaga.IoC.NETCore.Common.Resources.Enuns;
 using MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User;
 
-namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
+namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
 {
-    public class UserBusinessClass : DefaultBusinessClass<Common.Resources.Models.User, Domain.Models.User>, IUserBusinessClass
+    public class UserBussinessClass : DefaultBussinessClass<Common.Resources.Models.User, Domain.Models.User>, IUserBussinessClass
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
         private readonly IEmailSend _email;
-        private readonly ILinksBusinessClass _linksBusinessClass;
-        public UserBusinessClass(IUserRepository userRepository, IMapper mapper, IEmailSend email, ILinksBusinessClass linksBusinessClass) : base(userRepository, mapper)
+        private readonly ILinksBussinessClass _linksBusinessClass;
+        public UserBussinessClass(IUserRepository userRepository, IMapper mapper, IEmailSend email, ILinksBussinessClass linksBusinessClass) : base(userRepository, mapper)
         {
             this._repository = userRepository;
             this._mapper = mapper;

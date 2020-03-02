@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MGonzaga.IoC.NETCore.Common.Resources.Models;
-using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Web.Http;
@@ -19,9 +19,9 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers.v1
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class UserController : BaseController
     {
-        private readonly IUserBusinessClass _userService;
+        private readonly IUserBussinessClass _userService;
         private readonly IMapper _mapper;
-        public UserController(IUserBusinessClass userService, IMapper mapper)
+        public UserController(IUserBussinessClass userService, IMapper mapper)
         {
             this._userService = userService;
             this._mapper = mapper;

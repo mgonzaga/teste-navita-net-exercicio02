@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MGonzaga.IoC.NETCore.BusinessLayer.Impl;
-using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Impl;
+using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using MGonzaga.IoC.NETCore.Data.Context;
 using MGonzaga.IoC.NETCore.Data.Repositories;
 using MGonzaga.IoC.NETCore.Domain.Interfaces.Base;
@@ -127,10 +127,10 @@ namespace MGonzaga.IoC.NETCore.WebAPI
             //});
 
             services.AddScoped(typeof(IDbContext), typeof(SysDataBaseContext));
-            services.AddScoped(typeof(IUserBusinessClass), typeof(UserBusinessClass));
+            services.AddScoped(typeof(IUserBussinessClass), typeof(UserBussinessClass));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
             services.AddScoped(typeof(IEmailSend), typeof(EmailSend));
-            services.AddScoped(typeof(ILinksBusinessClass), typeof(LinksBusinessClass));
+            services.AddScoped(typeof(ILinksBussinessClass), typeof(LinksBussinessClass));
             services.AddScoped(typeof(ILinksRepository), typeof(LinksRepository));
             
 

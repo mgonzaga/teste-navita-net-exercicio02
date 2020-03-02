@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories.Base;
-using MGonzaga.IoC.NETCore.BusinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 
-namespace MGonzaga.IoC.NETCore.BusinessLayer.Impl
+namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
 {
-    public class DefaultBusinessClass<TResource, TModel> : IDefaultBusinessClass<TResource,TModel> where TResource: class where TModel : class
+    public class DefaultBussinessClass<TResource, TModel> : IDefaultBussinessClass<TResource,TModel> where TResource: class where TModel : class
     {
         public readonly IWriteRepository<TModel> repository;
         private readonly IMapper _mapper;
-        public DefaultBusinessClass(IWriteRepository<TModel> writeRepository, IMapper mapper)
+        public DefaultBussinessClass(IWriteRepository<TModel> writeRepository, IMapper mapper)
         {
             this.repository = writeRepository;
             this._mapper = mapper;

@@ -9,7 +9,7 @@
       "MGonzaga.IoC.NETCore.Tests/1.0.0": {
         "dependencies": {
           "Castle.Windsor": "5.0.1",
-          "MGonzaga.IoC.NETCore.BusinessLayer": "1.0.0",
+          "MGonzaga.IoC.NETCore.BussinessLayer": "1.0.0",
           "MGonzaga.IoC.NETCore.Common": "1.0.0",
           "MGonzaga.IoC.NETCore.Data": "1.0.0",
           "MGonzaga.IoC.NETCore.Domain": "1.0.0",
@@ -1093,7 +1093,7 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "MGonzaga.IoC.NETCore.BusinessLayer/1.0.0": {
+      "MGonzaga.IoC.NETCore.BussinessLayer/1.0.0": {
         "dependencies": {
           "AutoMapper": "9.0.0",
           "MGonzaga.IoC.NETCore.Common": "1.0.0",
@@ -1101,7 +1101,7 @@
           "MGonzaga.IoC.NETCore.Proxys": "1.0.0"
         },
         "runtime": {
-          "MGonzaga.IoC.NETCore.BusinessLayer.dll": {}
+          "MGonzaga.IoC.NETCore.BussinessLayer.dll": {}
         }
       },
       "MGonzaga.IoC.NETCore.Common/1.0.0": {
@@ -1775,7 +1775,7 @@
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
-    "MGonzaga.IoC.NETCore.BusinessLayer/1.0.0": {
+    "MGonzaga.IoC.NETCore.BussinessLayer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
