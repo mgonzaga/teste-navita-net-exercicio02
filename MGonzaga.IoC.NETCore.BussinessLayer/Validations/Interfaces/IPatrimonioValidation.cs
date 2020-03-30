@@ -6,6 +6,6 @@ namespace MGonzaga.IoC.NETCore.BussinessLayer.Validations.Interfaces
     public interface IPatrimonioValidation
     {
         void Insert(CriarNovoPatrimonioViewModel patrimonioViewModel);
-        void Update(AlterarPatrimonioViewModel patrimonioViewModel);
+        Domain.Models.Patrimonio Update(int id,AlterarPatrimonioViewModel patrimonioViewModel);
     }
 }

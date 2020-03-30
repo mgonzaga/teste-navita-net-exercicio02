@@ -141,6 +141,11 @@ namespace MGonzaga.IoC.NETCore.WebAPI
             services.AddScoped(typeof(IMarcaRepository), typeof(MarcaRepository));
             services.AddScoped(typeof(IMarcaValidation), typeof(MarcaValidation));
 
+            //Patrimonio
+            services.AddScoped(typeof(IPatrimonioBussinessClass), typeof(PatrimonioBussinessClass));
+            services.AddScoped(typeof(IPatrimonioRepository), typeof(PatrimonioRepository));
+            services.AddScoped(typeof(IPatrimonioValidation), typeof(PatrimonioValidation));
+            
             services.AddScoped(typeof(IEmailSend), typeof(EmailSend));
             
 

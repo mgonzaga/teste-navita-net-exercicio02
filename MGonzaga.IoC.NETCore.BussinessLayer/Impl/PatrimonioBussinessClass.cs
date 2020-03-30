@@ -22,15 +22,26 @@ namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
         public Patrimonio Insert(CriarNovoPatrimonioViewModel patrimonioViewModel)
         {
             _validation.Insert(patrimonioViewModel);
-            var model = _mapper.Map<Patrimonio>(patrimonioViewModel);
-            return base.Insert(model);
+            
+            var model = _mapper.Map<Domain.Models.Patrimonio>(patrimonioViewModel);
+            model = _repository.Insert(model);
+            _repository.SaveChanges();
+            
+            model.AlterNumeroTombo(model.Id);
+            _repository.SaveChanges();
+
+            return _mapper.Map<Common.Resources.Models.Patrimonio>(model);
         }
 
         public Patrimonio Update(int id, AlterarPatrimonioViewModel patrimonioViewModel)
         {
-            _validation.Update(patrimonioViewModel);
-            var model = _mapper.Map<Patrimonio>(patrimonioViewModel);
-            return base.Update(model);
+            var model = _validation.Update(id, patrimonioViewModel);
+            model.AlterNome(patrimonioViewModel.Nome);
+            model.AlterMarcaId(patrimonioViewModel.MarcaId);
+            model.AlterDescricao(patrimonioViewModel.Descricao);
+            _repository.Update(model);
+            _repository.SaveChanges();
+            return _mapper.Map<Patrimonio>(model);
         }
     }
 }

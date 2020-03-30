@@ -14,7 +14,12 @@ namespace MGonzaga.IoC.NETCore.Domain.Models.Filters
         }
         public static IQueryable<Marca> WithId(this IQueryable<Marca> query, int id)
         {
-            if (id > 0) query = query.Where(_ => _.Id == id);
+            if (id >= 0) query = query.Where(_ => _.Id == id);
+            return query;
+        }
+        public static IQueryable<Marca> WithNotId(this IQueryable<Marca> query, int id)
+        {
+            if (id >= 0) query = query.Where(_ => _.Id != id);
             return query;
         }
     }

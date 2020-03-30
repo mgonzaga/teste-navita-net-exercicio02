@@ -4,7 +4,7 @@ using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.ComponentModel.DataAnnotations;
+using MGonzaga.IoC.NETCore.Common.Exceptions;
 
 namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
 {
@@ -28,7 +28,7 @@ namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
             }
             else
             {
-                throw new ValidationException($"Record: {id} not found");
+                throw new ValidationException(System.Net.HttpStatusCode.NotFound, $"Id:{id} Não encontrado");
             }
         }
 

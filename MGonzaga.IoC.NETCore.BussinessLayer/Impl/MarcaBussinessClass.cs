@@ -22,8 +22,7 @@ namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
         public Common.Resources.Models.Marca Insert(CriarNovaMarcaViewModel marca)
         {
             _validation.Insert(marca);
-            if (_repository.ExisteNomeMarca(marca.Nome, 0)) throw new ValidationException("Este nome de marca já esta cadastrado.");
-            
+                       
             var model = _mapper.Map<Domain.Models.Marca>(marca);
             model = _repository.Insert(model);
             _repository.SaveChanges();
@@ -33,11 +32,8 @@ namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
 
         public Common.Resources.Models.Marca Update(int id, AlterarMarcaViewModel marca)
         {
-            _validation.Update(marca);
-            var model = _repository.GetById(id);
-            if (_repository.ExisteNomeMarca(marca.Nome, id)) throw new ValidationException("Este nome de marca já esta cadastrado.");
-            if (model == null) throw new ValidationException("Marca não encontrada");
-            
+            var model = _validation.Update(id, marca);
+
             model.AlterNome(marca.Nome);
             _repository.Update(model);
             _repository.SaveChanges();

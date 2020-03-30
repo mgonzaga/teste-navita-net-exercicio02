@@ -10,7 +10,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Initializers.Automapper.Entity
         {
             CreateMap<Domain.Models.Patrimonio, Common.Resources.Models.Patrimonio>();
             CreateMap<Common.Resources.Models.Patrimonio,Domain.Models.Patrimonio>();
-            CreateMap<CriarNovoPatrimonioViewModel, Common.Resources.Models.Patrimonio>();
+            CreateMap<CriarNovoPatrimonioViewModel, Domain.Models.Patrimonio>();
         }
     }
 }

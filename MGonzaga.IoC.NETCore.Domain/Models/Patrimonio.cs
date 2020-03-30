@@ -1,6 +1,7 @@
 ﻿using MGonzaga.IoC.NETCore.Domain.Models.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MGonzaga.IoC.NETCore.Domain.Models
 {

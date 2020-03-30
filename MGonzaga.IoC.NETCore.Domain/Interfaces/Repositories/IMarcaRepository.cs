@@ -8,6 +8,7 @@ namespace MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories
 {
     public interface IMarcaRepository : IWriteRepository<Marca>
     {
-        Boolean ExisteNomeMarca(String nome, int MarcaId);
+        bool ExisteNomeMarca(String nome, int MarcaId);
+        bool ExisteMarcaPorId(int MarcaId);
     }
 }

@@ -14,9 +14,15 @@ namespace MGonzaga.IoC.NETCore.Data.Repositories
         {
             this.db = db;
         }
+
+        public bool ExisteMarcaPorId(int MarcaId)
+        {
+            return db.Set<Marca>().WithId(MarcaId).Any();
+        }
+
         public bool ExisteNomeMarca(string nome, int MarcaId)
         {
-            return db.Set<Marca>().WithNome(nome).WithId(MarcaId).Any();
+            return db.Set<Marca>().WithNome(nome).WithNotId(MarcaId).Any();
         }
     }
 }

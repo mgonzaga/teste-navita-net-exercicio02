@@ -10,8 +10,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Initializers.Automapper.Entity
         {
             CreateMap<Domain.Models.Marca, Common.Resources.Models.Marca>();
             CreateMap<Common.Resources.Models.Marca,Domain.Models.Marca>();
-            CreateMap<CriarNovaMarcaViewModel, Common.Resources.Models.Marca>();
-            CreateMap<AlterarMarcaViewModel, Common.Resources.Models.Marca>();
+            CreateMap<CriarNovaMarcaViewModel, Domain.Models.Marca>();
         }
     }
 }
