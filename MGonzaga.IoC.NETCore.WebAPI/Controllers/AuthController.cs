@@ -28,16 +28,16 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
         }
         // POST api/user/Login
         /// <summary>
-        ///     Log In User On system
+        /// Efetua o Logon do usuário no Sistema
         /// </summary>
-        /// <param name="value">Login model username and password</param>
+        /// <param name="value">Nome do usuário e senha de acesso</param>
         /// <returns>AuthModel</returns>
         /// <response code="200">Login OK</response>
         /// <response code="400">Login Fail</response>
         [HttpPost, Route("Login")]
-        [ProducesResponseType(typeof(SucessResponse<TokenViewModel>), 200)]
+        [ProducesResponseType(typeof(SuccessResponse<TokenViewModel>), 200)]
         [ProducesResponseType(400)]
-        public IActionResult PostLogin([FromBody] UserLoginViewModel value)
+        public IActionResult PostLogin([FromBody] LoginUsuarioViewModel value)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
                 var tokenViewModel = new TokenViewModel() { AccessToken = String.Format("bearer {0}", tokenString) };
 
-                return Ok(new SucessResponse<TokenViewModel>(tokenViewModel));
+                return Ok(new SuccessResponse<TokenViewModel>(tokenViewModel));
             }
             catch (ValidationException ve)
             {

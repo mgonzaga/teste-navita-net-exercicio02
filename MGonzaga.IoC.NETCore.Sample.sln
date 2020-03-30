@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.Domain", "MGonzaga.IoC.NETCore.Domain\MGonzaga.IoC.NETCore.Domain.csproj", "{185707D9-24C4-4F26-B71A-97E76AE67F9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.Tests", "MGonzaga.IoC.NETCore.Tests\MGonzaga.IoC.NETCore.Tests.csproj", "{B4946821-E28C-4EE7-9CFE-9AB306EC07DB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.Common", "MGonzaga.IoC.NETCore.Common\MGonzaga.IoC.NETCore.Common.csproj", "{5AC96A6A-22FE-4EC1-9352-387B49143A96}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.BussinessLayer", "MGonzaga.IoC.NETCore.BussinessLayer\MGonzaga.IoC.NETCore.BussinessLayer.csproj", "{483ADEF0-1BFA-49DD-A9BB-79FE40444074}"
@@ -16,6 +14,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.WebAPI", "MGonzaga.IoC.NETCore.WebAPI\MGonzaga.IoC.NETCore.WebAPI.csproj", "{2944A121-FC52-4B9E-A256-DB260D47B8B0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGonzaga.IoC.NETCore.Data", "MGonzaga.IoC.NETCore.Data\MGonzaga.IoC.NETCore.Data.csproj", "{84491CF4-F293-472D-8F85-C6A85EBC335A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80E47FC3-3321-4C64-A93A-E97629B2C8BB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +30,6 @@ Global
 		{185707D9-24C4-4F26-B71A-97E76AE67F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{185707D9-24C4-4F26-B71A-97E76AE67F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{185707D9-24C4-4F26-B71A-97E76AE67F9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4946821-E28C-4EE7-9CFE-9AB306EC07DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4946821-E28C-4EE7-9CFE-9AB306EC07DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4946821-E28C-4EE7-9CFE-9AB306EC07DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4946821-E28C-4EE7-9CFE-9AB306EC07DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AC96A6A-22FE-4EC1-9352-387B49143A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AC96A6A-22FE-4EC1-9352-387B49143A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AC96A6A-22FE-4EC1-9352-387B49143A96}.Release|Any CPU.ActiveCfg = Release|Any CPU

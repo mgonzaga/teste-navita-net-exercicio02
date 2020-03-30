@@ -7,7 +7,7 @@ namespace MGonzaga.IoC.NETCore.Proxys.Email.Interfaces
 {
     public interface IEmailSend
     {
-        void ForgotPassword(string mailTo, User userData, Links links);
-        void EmailConfirmation(string mailTo, User userData, Links links);
+        void ForgotPassword(string mailTo, User userData);
+        void EmailConfirmation(string mailTo, User userData);
     }
 }

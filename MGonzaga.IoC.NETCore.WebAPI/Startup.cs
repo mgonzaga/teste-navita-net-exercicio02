@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using MGonzaga.IoC.NETCore.BussinessLayer.Impl;
 using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
+using MGonzaga.IoC.NETCore.BussinessLayer.Validations.Impl;
+using MGonzaga.IoC.NETCore.BussinessLayer.Validations.Interfaces;
 using MGonzaga.IoC.NETCore.Data.Context;
 using MGonzaga.IoC.NETCore.Data.Repositories;
 using MGonzaga.IoC.NETCore.Domain.Interfaces.Base;
 using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories;
 using MGonzaga.IoC.NETCore.Proxys.Email.Impl;
 using MGonzaga.IoC.NETCore.Proxys.Email.Interfaces;
+using MGonzaga.IoC.NETCore.WebAPI.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +17,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
@@ -22,7 +27,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace MGonzaga.IoC.NETCore.WebAPI
 {
     public class Startup
@@ -45,9 +49,9 @@ namespace MGonzaga.IoC.NETCore.WebAPI
                             .AllowAnyOrigin()
                             .AllowAnyHeader()
                             .AllowAnyMethod()
-                            .AllowCredentials()
                         .Build();
                 });
+               
             });
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -58,101 +62,97 @@ namespace MGonzaga.IoC.NETCore.WebAPI
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                   
+
                     ValidIssuer = "https://localhost:50887",
                     ValidAudience = "https://localhost:50887",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345")),
-                    
+
                 };
             });
             //services.AddAutoMapper();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
+            services.AddMvc();
+            services.AddControllers();
             // Add configuration for DbContext
             // Use connection string from appsettings.json file
             var dbContextAssembly = typeof(SysDataBaseContext).GetTypeInfo().Assembly;
             services.AddDbContext<SysDataBaseContext>(options =>
             {
-                options.UseMySql(Configuration["DatabaseConnectionString"], opt => {
+                options.UseSqlServer(Configuration["DatabaseConnectionString"], opt =>
+                {
                     opt.CommandTimeout(30);
                 });
             });
 
-            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info{
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
                     Version = "v1",
-                        Title = "MGonzaga.IoC.NETCore.WebAPI",
-                        Description = "A simple example ASP.NET Core Web API",
-                        TermsOfService = "None",
-                        Contact = new Contact
-                        {
-                            Name = "Marcio Cesar Gonzaga",
-                            Email = "marcio.c.gonzaga@gmail.com",
-                            Url = "https://twitter.com/spboyer"
-                        },
-                        License = new License
-                        {
-                            Name = "Use under LICX",
-                            Url = "https://example.com/license"
-                        }
+                    Title = "Patrimônio",
+                    Description = "API REST para gerenciamento de patrimônio de uma empresa",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Marcio Cesar Gonzaga",
+                        Email = "marcio.c.gonzaga@gmail.com"
+                    }
                 });
                 c.AddSecurityDefinition("Bearer",
-                    new ApiKeyScheme
+                    new OpenApiSecurityScheme
                     {
-                        In = "header",
-                        Description = "Please enter into field the word 'Bearer' following by space and JWT",
+                        In = ParameterLocation.Header,
+                        Description = "Coloque neste campo o texto 'Bearer' seguido por um espaço e o Token retornado na rota de autenticação",
                         Name = "Authorization",
-                        Type = "apiKey"
+                        Type = SecuritySchemeType.ApiKey
                     });
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
-                { "Bearer", Enumerable.Empty<string>() },
-            });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                    {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                },
+                                Scheme = "oauth2",
+                                Name = "Bearer",
+                                In = ParameterLocation.Header,
+
+                            },
+                            new List<string>()
+                        }
+                    });
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
 
-            //services.ConfigureSwaggerGen(option => {
-            //    option.CustomSchemaIds((type) => type.ToString()
-            //       .Replace("[", "_")
-            //       .Replace("]", "_")
-            //       .Replace(",", "-")
-            //       .Replace("`", "_"));
-            //});
-
             services.AddScoped(typeof(IDbContext), typeof(SysDataBaseContext));
+            
+            //Usuarios
             services.AddScoped(typeof(IUserBussinessClass), typeof(UserBussinessClass));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+            services.AddScoped(typeof(IUserValidation), typeof(UserValidation));
+
+            //Marcas
+            services.AddScoped(typeof(IMarcaBussinessClass), typeof(MarcaBussinessClass));
+            services.AddScoped(typeof(IMarcaRepository), typeof(MarcaRepository));
+            services.AddScoped(typeof(IMarcaValidation), typeof(MarcaValidation));
+
             services.AddScoped(typeof(IEmailSend), typeof(EmailSend));
-            services.AddScoped(typeof(ILinksBussinessClass), typeof(LinksBussinessClass));
-            services.AddScoped(typeof(ILinksRepository), typeof(LinksRepository));
             
 
-
-
         }
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
-            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("../swagger/v1/swagger.json", "MGonzaga.IoC.NETCore.WebAPI V1");
+                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Patrimônio V1");
                 c.ConfigObject.DeepLinking = true;
                 c.ConfigObject.DocExpansion = Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None;
-#if DEBUG
-                c.ConfigObject.DisplayOperationId = true;
-#endif
             });
 
             if (env.IsDevelopment())
@@ -163,10 +163,18 @@ namespace MGonzaga.IoC.NETCore.WebAPI
             {
                 app.UseHsts();
             }
+            app.UseMiddleware(typeof(ErrorsMiddleware));
+
             app.UseCors(MyAllowSpecificOrigins);
-            app.UseAuthentication();
+
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

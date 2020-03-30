@@ -1,11 +1,5 @@
 ﻿using AutoMapper;
-using MGonzaga.IoC.NETCore.Domain.Interfaces.Repositories;
-using MGonzaga.IoC.NETCore.Data.Repositories;
-using MGonzaga.IoC.NETCore.BussinessLayer.Impl;
-using MGonzaga.IoC.NETCore.BussinessLayer.Interfaces;
 using Microsoft.Extensions.Configuration;
-using MGonzaga.IoC.NETCore.Proxys.Email.Interfaces;
-using MGonzaga.IoC.NETCore.Proxys.Email.Impl;
 
 namespace MGonzaga.IoC.NETCore.Tests
 {
@@ -18,8 +12,6 @@ namespace MGonzaga.IoC.NETCore.Tests
             {
                 cfg.CreateMap<Domain.Models.User, Common.Resources.Models.User>();
                 cfg.CreateMap<Common.Resources.Models.User, Domain.Models.User>();
-                cfg.CreateMap<Domain.Models.Links, Common.Resources.Models.Links>();
-                cfg.CreateMap<Common.Resources.Models.Links, Domain.Models.Links>();
 
             });
             var config = InitConfiguration();

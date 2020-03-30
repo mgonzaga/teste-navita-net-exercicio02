@@ -8,10 +8,10 @@ namespace MGonzaga.IoC.NETCore.Proxys.Email.Impl
 {
     public class EmailSend : IEmailSend
     {
-        public void EmailConfirmation(string mailTo, User userData, Links links)
+        public void EmailConfirmation(string mailTo, User userData)
         {
         }
-        public void ForgotPassword(string mailTo, User userData, Links links)
+        public void ForgotPassword(string mailTo, User userData)
         {
         }
     }

@@ -7,13 +7,12 @@ namespace MGonzaga.IoC.NETCore.BussinessLayer.Interfaces
 {
     public interface IUserBussinessClass : IDefaultBussinessClass<User,Domain.Models.User>
     {
-        User LogIn(UserLoginViewModel login);
-        IEnumerable<User> GetUsersbyFilterPagined(out int totalRecords, int page, int pageSize, string fullName, string email, bool? confirmedEmail);
+        User LogIn(LoginUsuarioViewModel login);
+        IEnumerable<User> GetUsersbyFilterPagined(out int totalRecords, int page, int pageSize, string fullName, string email);
         User GetByEmail(string email);
-        User InsertUserWithEmailNotConfirmed(CreateNewUserViewModel user);
+        User Insert(CriarUsuarioViewModel user);
         string ForgotPassword(string email);
-        string ConfirmEmail(ConfirmPasswordViewModel confirmEmail);
-        void ChangePassword(Guid linkUniqueId, ChangePasswordViewModel value);
-        string ChangeMyPassword(ChangePasswordViewModel value);
+        void ChangePassword(Guid userUniqueId, AlterarSenhaViewModel value);
+        User Update(int userId,AlterarUsuarioViewModel userData);
     }
 }

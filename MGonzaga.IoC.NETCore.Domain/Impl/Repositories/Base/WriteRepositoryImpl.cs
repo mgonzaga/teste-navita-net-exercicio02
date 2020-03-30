@@ -16,12 +16,12 @@ namespace MGonzaga.IoC.NETCore.Domain.Impl.Repositories.Base
         {
             this.db = db;
         }
-        public void Delete(T model)
+        public virtual void Delete(T model)
         {
             db.Set<T>().Remove(model);
         }
 
-        public T Insert(T model)
+        public virtual T Insert(T model)
         {
             return db.Set<T>().Add(model).Entity;
         }

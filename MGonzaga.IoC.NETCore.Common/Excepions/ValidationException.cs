@@ -9,7 +9,7 @@ namespace MGonzaga.IoC.NETCore.Common.Exceptions
         public HttpStatusCode StatusCodeToReturn { get; set; }
         public ValidationException(string message) : base(message)
         {
-            StatusCodeToReturn = HttpStatusCode.InternalServerError;
+            StatusCodeToReturn = HttpStatusCode.BadRequest;
         }
         public ValidationException(HttpStatusCode statusCodeToReturn, string message) : base(message)
         {

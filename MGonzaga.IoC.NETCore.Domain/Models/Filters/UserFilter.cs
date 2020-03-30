@@ -1,5 +1,6 @@
 ﻿
 using MGonzaga.IoC.NETCore.Domain.Models;
+using System;
 using System.Linq;
 
 namespace MGonzaga.IoC.NETCore.Domain.Models.Filters
@@ -18,9 +19,9 @@ namespace MGonzaga.IoC.NETCore.Domain.Models.Filters
             if (!string.IsNullOrEmpty(email)) query = query.Where(_ => _.Email == email);
             return query;
         }
-        public static IQueryable<User> WithConfirmedEmail(this IQueryable<User> query, bool? confirmedEmail)
+        public static IQueryable<User> WithUniqueId(this IQueryable<User> query, Guid uniqueId)
         {
-            if (confirmedEmail != null) query = query.Where(_ => _.ConfirmedEmail == confirmedEmail);
+            if (uniqueId != null) query = query.Where(_ => _.UniqueId == uniqueId);
             return query;
         }
     }
