@@ -44,7 +44,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
                 var user = _userService.LogIn(value);
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                var tokenExpireDateTime = DateTime.Now.AddDays(30);
+                var tokenExpireDateTime = DateTime.Now.AddHours(8);
                 var claims = new List<Claim>
                 {
                     new Claim("FullName", user.FullName),

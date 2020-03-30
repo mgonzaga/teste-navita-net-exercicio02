@@ -1,9 +1,9 @@
 # Gerenciador de patrimônios
 API Rest para gerenciamento de patrônios de uma empresa.
 ## Tecnologias utilizadas:
-- ASP .NET Core 3.1.3
+- ASP .NET Core 3.0
 - Banco de dados SQL Server
-- Autênticação por Token
+- Autênticação por Token (Expiração em 8 horas)
   
 ## Bibliotecas utlizadas para desenvolvimento
 - Entity Framework Core 3.1.3
@@ -20,7 +20,7 @@ Framework de injeção de dependência nativo do ASP .NET Core.
 ### 3. Code First
 As Domains models são criadas diretamente no projeto "Domain" e posteriormente são criadas no banco de dados utilizando a ferramenta de Migration.
 ## Guia de instalação
-1. Fazer o Download do .NET Core 3.1 ([Clique Aqui](https://download.visualstudio.microsoft.com/download/pr/56131147-65ea-47d6-a945-b0296c86e510/44b43b7cb27d55081e650b9a4188a419/dotnet-sdk-3.1.201-win-x64.exe "Clique Aqui"))
+1. Fazer o Download do .NET Core 3.0 ([Clique Aqui](https://dotnet.microsoft.com/download/visual-studio-sdks?utm_source=getdotnetsdk&utm_medium=referral "Clique Aqui"))
 2. Fazer a instalação no computador.
 3. Criar banco de dados no SQL Server utilizado o arquivo de Scripts "BancoDeDados.SQL".
 3. Abrir o projeto no Visual Studio 2019
