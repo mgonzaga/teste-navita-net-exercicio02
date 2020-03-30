@@ -20,13 +20,11 @@ namespace MGonzaga.IoC.NETCore.Data.Repositories
         {
             return db.Set<User>().WithEmail(email).FirstOrDefault();
         }
-
-        public IEnumerable<User> GetUsersbyFilterPagined(out int totalRecords, int page, int pageSize, string fullName, string email, bool? confirmedEmail)
+        public IEnumerable<User> GetUsersbyFilterPagined(out int totalRecords, int page, int pageSize, string fullName, string email)
         {
             var query = db.Set<User>()
                             .ContainsFullName(fullName)
-                            .WithEmail(email)
-                            .WithConfirmedEmail(confirmedEmail);
+                            .WithEmail(email);
             totalRecords = query.Count();
             var result = query
                             .Skip(page * pageSize)
@@ -34,10 +32,16 @@ namespace MGonzaga.IoC.NETCore.Data.Repositories
                             .ToList();
             return result;
         }
-        public new virtual User Insert(User model)
+        public override User Insert(User model)
         {
             model.AlterUniqueId(Guid.NewGuid());
             return base.Insert(model);
         }
+
+        public User GetByUniqueId(Guid uniqueId)
+        {
+            return db.Set<User>().WithUniqueId(uniqueId).FirstOrDefault();
+        }
+
     }
 }

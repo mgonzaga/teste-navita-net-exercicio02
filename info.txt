@@ -1,0 +1,5 @@
+1. Atualizar Objetos de banco de dados
+	1.1 No Package Manager Console Selecionar o projeto "MGonzaga.IOC.NetCore.Data".
+	1.2 Digitar o comando "add-migration [NOME_DA_VERSAO]"
+	1.3 Para Atualizar o banco de dados digite: update-database.
+2. Gerar Script de Banco de dados "script-migration"

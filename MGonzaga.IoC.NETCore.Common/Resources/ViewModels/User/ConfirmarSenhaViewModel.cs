@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User
 {
-    public class ConfirmPasswordViewModel
+    public class ConfirmarSenhaViewModel
     {
         public Guid UniqueId { get; set; }
         public String EmailToConfirm { get; set; }
