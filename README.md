@@ -1,9 +1,9 @@
 # Gerenciador de patrimônios
 API Rest para gerenciamento de patrônios de uma empresa.
 ## Tecnologias utilizadas:
-- ASP .NET Core 3.0
+- ASP .NET Core 3.0 WebAPI
 - Banco de dados SQL Server
-- Autênticação por Token (Expiração em 8 horas)
+- Autênticação por Token JWT (Expiração em 8 horas)
   
 ## Bibliotecas utlizadas para desenvolvimento
 - Entity Framework Core 3.1.3
@@ -12,11 +12,11 @@ API Rest para gerenciamento de patrônios de uma empresa.
 
 Para esta aplicação, utilizei os seguintes padrões de desenvolvimento:
 ### 1. MVC
-### 3. Inversão de controle
+### 2. Inversão de controle
 Nenhum objeto é instânciado diretamente dentro dos métodos, todos os objetos são injetados diretamente no construtor da classe.
-### 2. Injeção de Dependência
+### 3. Injeção de Dependência
 Framework de injeção de dependência nativo do ASP .NET Core.
-### 3. Code First
+### 4. Code First
 As Domains models são criadas diretamente no projeto "Domain" e posteriormente são criadas no banco de dados utilizando a ferramenta de Migration.
 ## Guia de instalação
 1. Fazer o Download do .NET Core 3.0 ([Clique Aqui](https://dotnet.microsoft.com/download/visual-studio-sdks?utm_source=getdotnetsdk&utm_medium=referral "Clique Aqui"))
