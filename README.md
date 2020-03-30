@@ -12,7 +12,6 @@ API Rest para gerenciamento de patrônios de uma empresa.
 
 Para esta aplicação, utilizei os seguintes padrões de desenvolvimento:
 ### 1. MVC
-Padrão de projetos mais utilizado no mundo
 ### 3. Inversão de controle
 Nenhum objeto é instânciado diretamente dentro dos métodos, todos os objetos são injetados diretamente no construtor da classe.
 ### 2. Injeção de Dependência
