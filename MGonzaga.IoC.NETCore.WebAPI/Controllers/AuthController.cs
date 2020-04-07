@@ -14,6 +14,7 @@ using System.Web.Http;
 using MGonzaga.IoC.NETCore.Common.Resources.ViewModels;
 using MGonzaga.IoC.NETCoreWebAPI.Controllers.Base;
 using MGonzaga.IoC.NETCore.Common.Resources.ViewModels.User;
+using Microsoft.AspNetCore.Authorization;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
 {
@@ -37,6 +38,7 @@ namespace MGonzaga.IoC.NETCore.WebAPI.Controllers
         [HttpPost, Route("Login")]
         [ProducesResponseType(typeof(SuccessResponse<TokenViewModel>), 200)]
         [ProducesResponseType(400)]
+        [AllowAnonymous]
         public IActionResult PostLogin([FromBody] LoginUsuarioViewModel value)
         {
             try
