@@ -51,6 +51,7 @@ namespace MGonzaga.IoC.NETCore.BussinessLayer.Impl
             if (user != null) throw new ValidationException("Este endereço de e-mail já esta sendo ultilizado.");
             var resource = _mapper.Map<User>(createNewUsermodel);
             var model = _repository.Insert(_mapper.Map<Domain.Models.User>(resource));
+            _repository.SaveChanges();
             return _mapper.Map<Common.Resources.Models.User>(model);
         }
 
